@@ -1,6 +1,6 @@
 upstream django {
     ip_hash;
-    server django_01_srv:8000;
+    server django_sample005_local:8000;
 }
 
 server {
