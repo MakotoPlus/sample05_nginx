@@ -15,13 +15,13 @@ ENV TERM xterm
 
 # default.confファイルを0バイトに変更
 # これをやらないとうまく切替わらないため実施
-# RUN rm /etc/nginx/conf.d/default.conf
-# RUN touch /etc/nginx/conf.d/default.conf
+RUN rm /etc/nginx/conf.d/default.conf
+RUN touch /etc/nginx/conf.d/default.conf
 
 # ローカルの default.conf をコンテナ内の /etc/nginx/conf.d/ にコピーする
-# COPY $NGINX_DIR/app_nginx.conf.local /etc/nginx/conf.d/app_nginx.conf
+COPY $NGINX_DIR/app_nginx.conf /etc/nginx/conf.d/.
 # ローカルの uwsgi_params をコンテナ内の /etc/nginx/conf.d/ にコピーする
-# COPY $NGINX_DIR/uwsgi_params /etc/nginx/.
+COPY $NGINX_DIR/uwsgi_params /etc/nginx/.
 # ローカルのhtmlファイル をコンテナ内の /var/www/html/ にコピーする
 #COPY ./*.html /var/www/html/
 #RUN apt-get install -y vim less
