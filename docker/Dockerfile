@@ -2,7 +2,7 @@
 FROM nginx
 # USER root
 
-ENV NGINX_DIR="./sample05_nginx/docker"
+ENV NGINX_DIR="./docker"
 
 RUN apt-get update
 RUN apt-get -y install locales && \
