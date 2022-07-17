@@ -3,6 +3,8 @@ FROM nginx
 # USER root
 
 ENV NGINX_DIR="./docker"
+ENV COPY_STATIC_DIR="./static"
+ENV STATIC_DIR="/static"
 
 RUN apt-get update
 RUN apt-get -y install locales && \
@@ -22,6 +24,11 @@ RUN touch /etc/nginx/conf.d/default.conf
 COPY $NGINX_DIR/app_nginx.conf /etc/nginx/conf.d/.
 # ローカルの uwsgi_params をコンテナ内の /etc/nginx/conf.d/ にコピーする
 COPY $NGINX_DIR/uwsgi_params /etc/nginx/.
+# STATIC File COPY
+WORKDIR $STATIC_DIR
+COPY  $COPY_STATIC_DIR $STATIC_DIR
+WORKDIR /
+
 # ローカルのhtmlファイル をコンテナ内の /var/www/html/ にコピーする
 #COPY ./*.html /var/www/html/
 #RUN apt-get install -y vim less
